@@ -8,12 +8,15 @@ class Card extends Component {
     fetchData() {
         this.props.todoAsync()
     }
+    setData() {
+        this.props.changeToDo('同步的方式啊哈哈哈')
+    }
     render() {
-        console.log(this.props)
         return (
             <div className="card">
                 {this.props.todo ?  <div>{this.props.todo}</div> : null}
                 <button onClick={this.fetchData.bind(this)}>一个卡片的按钮</button>
+                <button onClick={this.setData.bind(this)}>同步的</button>
             </div>
         )
     }
@@ -26,11 +29,11 @@ const mapStoreToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
         changeToDo: payload => {
             dispatch({type: 'ADD_TODO', payload})
         }
     }
 }
-export default  connect(mapStoreToProps ,  {...mapDispatchToProps, todoAsync})(Card);
+export default  connect(mapStoreToProps , {todoAsync})(Card);
