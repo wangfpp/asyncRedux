@@ -1,9 +1,4 @@
-### 学习异步redux
-
-### 建立actions
- 创建异步action
- ```javascript
-    import { ADD_TODO } from './actionTypes';
+import { ADD_TODO } from './actionTypes';
 import { Api } from '../../api/index.js';
 
 const  todo =  (payload) =>  {
@@ -25,8 +20,3 @@ const todoAsync = () => {
     }
 }
 export  {todo, todoAsync};
- ```
-
-
- 组件中调用这个异步方法就好
- 
