@@ -29,4 +29,28 @@ export  {todo, todoAsync};
 
 
  组件中调用这个异步方法就好
+ ```javascript
+ // 引入
+ import { bindActionCreators } from 'redux';
+import { todoAsync } from '../../store/action/actions'
+
+// connect连接
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeToDo: payload => {
+            dispatch({type: 'ADD_TODO', payload})
+        },
+        todoAsync:  bindActionCreators(todoAsync, dispatch)
+    }
+}
+export default  connect(mapStoreToProps , mapDispatchToProps)(Card);
+
+// 调用
+ fetchData() { // 异步方式
+        this.props.todoAsync()
+    }
+    setData() {　// 同步方式
+        this.props.changeToDo('同步的方式啊哈哈哈')
+    }
+ ```
  
