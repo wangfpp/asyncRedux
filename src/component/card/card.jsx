@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Api } from '../../api/index';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { todoAsync } from '../../store/action/actions'
-
 
 class Card extends Component {
     fetchData() {
@@ -23,7 +23,6 @@ class Card extends Component {
 }
 
 const mapStoreToProps = state => {
-    console.log(state);
     return {
         todo: state.todo
     }
@@ -33,7 +32,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeToDo: payload => {
             dispatch({type: 'ADD_TODO', payload})
-        }
+        },
+        todoAsync:  bindActionCreators(todoAsync, dispatch)
     }
 }
-export default  connect(mapStoreToProps , {todoAsync})(Card);
+export default  connect(mapStoreToProps , mapDispatchToProps)(Card);
